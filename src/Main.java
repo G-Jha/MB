@@ -28,7 +28,25 @@ public class Main {
 
         Map<String,Integer>echoBaller=echomomy(matches,deliveries);
         System.out.println(echoBaller);
+//        question 5 (Higest Scoring batsen)
+        Map<String,Integer>totalBatman=scoringBatsen(matches,deliveries);
+        System.out.println(totalBatman);
 
+
+    }
+
+    private static Map<String, Integer> scoringBatsen(List<Map<String, String>> matches, List<Map<String, String>> deliveries) {
+        Map<String, Integer>data=new HashMap<>();
+        for (int i = 0; i < deliveries.size(); i++) {
+                int runs = Integer.parseInt(deliveries.get(i).get("batsman_runs"));
+                String current_Batsman = deliveries.get(i).get("batsman");
+                if (data.containsKey(current_Batsman)) {
+                    data.put(current_Batsman, data.get(current_Batsman) + runs);
+                } else {
+                    data.put(current_Batsman, runs);
+                }
+        }
+        return data;
     }
 
     private static Map<String, Integer> echomomy(List<Map<String, String>> matches, List<Map<String, String>> deliveries) {
